@@ -130,7 +130,7 @@ def local_css(file_name):
 local_css("style.css")
 
 # Set page configuration
-st.set_page_config(layout="wide", page_title="Advanced Text Cleaning App", theme="light")
+st.set_page_config(layout="wide", page_title="Advanced Text Cleaning App")
 
 # Streamlit interface setup
 st.title('Advanced Text Cleaning App')
