@@ -122,12 +122,29 @@ def extract_text_from_url(url):
     soup = BeautifulSoup(page.content, 'html.parser')
     return soup.get_text()
 
-# Streamlit interface setup
-st.title('Text Cleaning App')
+def local_css(file_name):
+    with open(file_name, "r") as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
-text_cleaning_choice = st.radio("Select the type of text cleaning", ('Normal Text Cleaning', 'NLP Task'))
-# Choose between text input, PDF upload, DOCX upload, or URL input
-input_choice = st.radio("Choose Input Type", ('Paste Text', 'Upload PDF', 'Upload DOCX', 'Enter URL'))
+# Apply the custom CSS
+local_css("style.css")
+
+# Set page configuration
+st.set_page_config(layout="wide", page_title="Advanced Text Cleaning App", theme="light")
+
+# Streamlit interface setup
+st.title('Advanced Text Cleaning App')
+
+# Columns for layout
+col1, col2 = st.columns(2)
+
+with col1:
+    # User choice for type of text cleaning
+    text_cleaning_choice = st.radio("Select the type of text cleaning", ('Normal Text Cleaning', 'NLP Task'))
+
+with col2:
+    # Choose between text input, PDF upload, DOCX upload, or URL input
+    input_choice = st.radio("Choose Input Type", ('Paste Text', 'Upload PDF', 'Upload DOCX', 'Enter URL'))
 
 # Process and show text
 def process_and_show_text(text):
